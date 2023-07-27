@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: "Taskify",
+          themeMode: ThemeMode.dark,
           theme: ThemeData(
             scaffoldBackgroundColor: AppConsts.kBkDark,
             colorScheme: ColorScheme.fromSeed(
