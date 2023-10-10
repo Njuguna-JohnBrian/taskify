@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../common/utils/constants.dart';
-import '../../../common/widgets/appstyle.dart';
+import '../../../common/widgets/custom_otn_btn.dart';
 import '../../../common/widgets/height_spacer.dart';
-import '../../../common/widgets/reusable_text.dart';
+import '../../auth/pages/login_page.dart';
 
 class PageTwo extends StatelessWidget {
   const PageTwo({super.key});
@@ -29,7 +29,21 @@ class PageTwo extends StatelessWidget {
           ),
           const HeightSpacer(
             hieght: 50,
-          )
+          ),
+          CustomOutlnBtn(
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LoginPage(),
+                ),
+              );
+            },
+            width: AppConsts.kWidth * 0.9,
+            height: AppConsts.kHeight * 0.06,
+            text: 'Login with a phone number',
+            color: AppConsts.kLight,
+          ),
         ],
       ),
     );
