@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:taskify/common/utils/constants.dart';
-import 'package:taskify/features/onboarding/pages/onboarding.dart';
+import 'package:taskify/features/todo/pages/homepage.dart';
 
 void main() {
   runApp(
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
             ),
             useMaterial3: true,
           ),
-          home: const OnBoarding(),
+          home: const HomePage(),
         );
       },
     );
