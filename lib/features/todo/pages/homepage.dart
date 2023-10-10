@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:taskify/common/utils/constants.dart';
 import 'package:taskify/common/widgets/appstyle.dart';
 import 'package:taskify/common/widgets/reusable_text.dart';
-
-import '../../../common/widgets/height_spacer.dart';
 import '../../../common/widgets/width_spacer.dart';
 
 class HomePage extends StatefulWidget {
