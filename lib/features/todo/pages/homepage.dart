@@ -8,6 +8,7 @@ import 'package:taskify/common/widgets/custom_text.dart';
 import 'package:taskify/common/widgets/expansion_tile.dart';
 import 'package:taskify/common/widgets/height_spacer.dart';
 import 'package:taskify/common/widgets/reusable_text.dart';
+import 'package:taskify/features/todo/widgets/todo_tile.dart';
 import '../../../common/widgets/width_spacer.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -224,6 +225,18 @@ class _HomePageState extends ConsumerState<HomePage>
                       Container(
                         color: AppConsts.kGreen,
                         height: AppConsts.kHeight * 0.3,
+                        child: ListView(
+                          children: [
+                            TodoTile(
+                              start: "03:00",
+                              end: "05:00",
+                              switcher: Switch(
+                                value: true,
+                                onChanged: (value) {},
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                       Container(
                         color: AppConsts.kBkLight,
@@ -241,13 +254,19 @@ class _HomePageState extends ConsumerState<HomePage>
                 text2: "Tomorrow's task are shown here",
                 children: [],
               ),
-               XpansionTile(
-                text: DateTime.now().add(const Duration(days: 1)).toString().substring(5,10),
+              XpansionTile(
+                text: DateTime.now()
+                    .add(const Duration(days: 1))
+                    .toString()
+                    .substring(5, 10),
                 text2: "Monday's task are shown here",
                 children: const [],
               ),
-               XpansionTile(
-                text: DateTime.now().add(const Duration(days: 2)).toString().substring(5,10),
+              XpansionTile(
+                text: DateTime.now()
+                    .add(const Duration(days: 2))
+                    .toString()
+                    .substring(5, 10),
                 text2: "Tuesday's task are shown here",
                 children: const [],
               )
