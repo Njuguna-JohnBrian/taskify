@@ -15,8 +15,9 @@ class TodoTile extends StatelessWidget {
     this.description,
     this.start,
     this.end,
-    required this.editWidget,
+    this.editWidget,
     this.delete,
+    this.switcher,
   });
 
   final Color? color;
@@ -24,7 +25,8 @@ class TodoTile extends StatelessWidget {
   final String? description;
   final String? start;
   final String? end;
-  final Widget editWidget;
+  final Widget? editWidget;
+  final Widget? switcher;
   final Function()? delete;
 
   @override
@@ -37,7 +39,7 @@ class TodoTile extends StatelessWidget {
         children: [
           Container(
             padding: EdgeInsets.all(
-              8.h,
+              0.h,
             ),
             width: AppConsts.kWidth,
             decoration: BoxDecoration(
@@ -49,108 +51,120 @@ class TodoTile extends StatelessWidget {
               ),
             ),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  height: 80,
-                  width: 5,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(
-                        AppConsts.kRadius,
+                Row(
+                  children: [
+                    Container(
+                      height: 80,
+                      width: 5,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(
+                            AppConsts.kRadius,
+                          ),
+                        ),
+                        // TODO: Make colors dynamic
+                        color: color ?? AppConsts.kRed,
                       ),
                     ),
-                    // TODO: Make colors dynamic
-                    color: color ?? AppConsts.kRed,
-                  ),
-                ),
-                const WidthSpacer(
-                  wydth: 15,
-                ),
-                Padding(
-                  padding: EdgeInsets.all(
-                    8.h,
-                  ),
-                  child: SizedBox(
-                    width: AppConsts.kWidth,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ReusableText(
-                          text: title ?? "Title of the Todo",
-                          style: appstyle(
-                            18,
-                            AppConsts.kLight,
-                            FontWeight.bold,
-                          ),
-                        ),
-                        const HeightSpacer(
-                          hieght: 3,
-                        ),
-                        ReusableText(
-                          text: description ?? "Description of the Todo",
-                          style: appstyle(
-                            12,
-                            AppConsts.kLight,
-                            FontWeight.bold,
-                          ),
-                        ),
-                        const HeightSpacer(
-                          hieght: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                    const WidthSpacer(
+                      wydth: 15,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(
+                        8.h,
+                      ),
+                      child: SizedBox(
+                        width: AppConsts.kWidth * 0.6,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              width: AppConsts.kWidth * 0.3,
-                              height: 25.h,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  width: 0.3,
-                                  color: AppConsts.kGreyDK,
-                                ),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(
-                                    AppConsts.kRadius,
-                                  ),
-                                ),
-                                color: AppConsts.kBkDark,
-                              ),
-                              child: Center(
-                                child: ReusableText(
-                                  text: "$start |  $end",
-                                  style: appstyle(
-                                    12,
-                                    AppConsts.kLight,
-                                    FontWeight.normal,
-                                  ),
-                                ),
+                            ReusableText(
+                              text: title ?? "Title of the Todo",
+                              style: appstyle(
+                                18,
+                                AppConsts.kLight,
+                                FontWeight.bold,
                               ),
                             ),
-                            const WidthSpacer(
-                              wydth: 20,
+                            const HeightSpacer(
+                              hieght: 3,
+                            ),
+                            ReusableText(
+                              text: description ?? "Description of the Todo",
+                              style: appstyle(
+                                12,
+                                AppConsts.kLight,
+                                FontWeight.bold,
+                              ),
+                            ),
+                            const HeightSpacer(
+                              hieght: 10,
                             ),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                SizedBox(
-                                  child: editWidget,
+                                Container(
+                                  width: AppConsts.kWidth * 0.3,
+                                  height: 25.h,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 0.3,
+                                      color: AppConsts.kGreyDK,
+                                    ),
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(
+                                        AppConsts.kRadius,
+                                      ),
+                                    ),
+                                    color: AppConsts.kBkDark,
+                                  ),
+                                  child: Center(
+                                    child: ReusableText(
+                                      text: "$start |  $end",
+                                      style: appstyle(
+                                        12,
+                                        AppConsts.kLight,
+                                        FontWeight.normal,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                                 const WidthSpacer(
                                   wydth: 20,
                                 ),
-                                GestureDetector(
-                                  onTap: delete,
-                                  child: const Icon(
-                                    MaterialCommunityIcons.delete_circle,
-                                  ),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      child: editWidget,
+                                    ),
+                                    const WidthSpacer(
+                                      wydth: 20,
+                                    ),
+                                    GestureDetector(
+                                      onTap: delete,
+                                      child: const Icon(
+                                        MaterialCommunityIcons.delete_circle,
+                                      ),
+                                    )
+                                  ],
                                 )
                               ],
                             )
                           ],
-                        )
-                      ],
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
+                Container(
+                  padding: EdgeInsets.only(
+                    bottom: 0.h,
+                    right: 2,
+                  ),
+                  child: switcher,
+                )
               ],
             ),
           )
