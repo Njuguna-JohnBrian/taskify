@@ -8,6 +8,7 @@ import 'package:taskify/common/widgets/custom_text.dart';
 import 'package:taskify/common/widgets/expansion_tile.dart';
 import 'package:taskify/common/widgets/height_spacer.dart';
 import 'package:taskify/common/widgets/reusable_text.dart';
+import 'package:taskify/features/todo/controllers/xpansion_provider.dart';
 import 'package:taskify/features/todo/widgets/todo_tile.dart';
 import '../../../common/widgets/width_spacer.dart';
 
@@ -249,10 +250,34 @@ class _HomePageState extends ConsumerState<HomePage>
               const HeightSpacer(
                 hieght: 20,
               ),
-              const XpansionTile(
+              XpansionTile(
                 text: "Tomorrow's Task",
                 text2: "Tomorrow's task are shown here",
-                children: [],
+                onExpansionChanged: (bool expanded) {
+                  ref.watch(xpansionStateProvider.notifier).setState(!expanded);
+                },
+                trailing: Padding(
+                  padding: EdgeInsets.only(right: 12.0.w),
+                  child: ref.watch(xpansionStateProvider)
+                      ? const Icon(
+                          AntDesign.circledown,
+                          color: AppConsts.kLight,
+                        )
+                      : const Icon(
+                          AntDesign.closecircleo,
+                          color: AppConsts.kBlueLight,
+                        ),
+                ),
+                children: [
+                  TodoTile(
+                    start: "03:00",
+                    end: "05:00",
+                    switcher: Switch(
+                      value: true,
+                      onChanged: (value) {},
+                    ),
+                  )
+                ],
               ),
               XpansionTile(
                 text: DateTime.now()
@@ -260,16 +285,34 @@ class _HomePageState extends ConsumerState<HomePage>
                     .toString()
                     .substring(5, 10),
                 text2: "Monday's task are shown here",
-                children: const [],
+                onExpansionChanged: (bool expanded) {
+                  ref
+                      .watch(xpansionState0Provider.notifier)
+                      .setState(!expanded);
+                },
+                trailing: Padding(
+                  padding: EdgeInsets.only(right: 12.0.w),
+                  child: ref.watch(xpansionState0Provider)
+                      ? const Icon(
+                          AntDesign.circledown,
+                          color: AppConsts.kLight,
+                        )
+                      : const Icon(
+                          AntDesign.closecircleo,
+                          color: AppConsts.kBlueLight,
+                        ),
+                ),
+                children: [
+                  TodoTile(
+                    start: "03:00",
+                    end: "05:00",
+                    switcher: Switch(
+                      value: true,
+                      onChanged: (value) {},
+                    ),
+                  )
+                ],
               ),
-              XpansionTile(
-                text: DateTime.now()
-                    .add(const Duration(days: 2))
-                    .toString()
-                    .substring(5, 10),
-                text2: "Tuesday's task are shown here",
-                children: const [],
-              )
             ],
           ),
         ),
