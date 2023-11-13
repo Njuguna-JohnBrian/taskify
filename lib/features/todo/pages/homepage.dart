@@ -33,6 +33,7 @@ class _HomePageState extends ConsumerState<HomePage>
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -261,7 +262,7 @@ class _HomePageState extends ConsumerState<HomePage>
                   child: ref.watch(xpansionStateProvider)
                       ? const Icon(
                           AntDesign.circledown,
-                          color: AppConsts.kLight,
+                          color: AppConsts.kLight
                         )
                       : const Icon(
                           AntDesign.closecircleo,
@@ -294,13 +295,13 @@ class _HomePageState extends ConsumerState<HomePage>
                   padding: EdgeInsets.only(right: 12.0.w),
                   child: ref.watch(xpansionState0Provider)
                       ? const Icon(
-                          AntDesign.circledown,
-                          color: AppConsts.kLight,
-                        )
+                      AntDesign.circledown,
+                      color: AppConsts.kLight
+                  )
                       : const Icon(
-                          AntDesign.closecircleo,
-                          color: AppConsts.kBlueLight,
-                        ),
+                    AntDesign.closecircleo,
+                    color: AppConsts.kBlueLight,
+                  ),
                 ),
                 children: [
                   TodoTile(
