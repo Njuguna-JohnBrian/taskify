@@ -74,3 +74,6 @@ If you encounter any issues or have questions, please don't hesitate to reach ou
 
 Let Taskify help you manage your tasks more efficiently and stay organized. Happy task management!
 
+```bash
+flutter pub run build_runner watch
+```
