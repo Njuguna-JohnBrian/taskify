@@ -14,7 +14,7 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   flutter_screenutil: ^5.8.4
-  hooks_riverpod: ^2.3.6
+  hooks_riverpod: ^2.4.5
   google_fonts: ^5.1.0
   flutter_vector_icons: ^2.0.0
   smooth_page_indicator: ^1.1.0
