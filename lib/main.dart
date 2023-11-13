@@ -1,3 +1,4 @@
+import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -15,6 +16,15 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  static final defaultLightColorsScheme = ColorScheme.fromSwatch(
+    primarySwatch: Colors.blue,
+  );
+
+  static final defaultDarkColorScheme = ColorScheme.fromSwatch(
+    brightness: Brightness.dark,
+    primarySwatch: Colors.blue,
+  );
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -22,19 +32,25 @@ class MyApp extends StatelessWidget {
       designSize: const Size(375, 825),
       minTextAdapt: true,
       builder: (context, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: "Taskify",
-          themeMode: ThemeMode.dark,
-          theme: ThemeData(
-            scaffoldBackgroundColor: AppConsts.kBkDark,
-            colorScheme: ColorScheme.fromSeed(
-              seedColor: Colors.deepPurple,
+        return DynamicColorBuilder(
+            builder: (lightColorScheme, darkColorScheme) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: "Taskify",
+            theme: ThemeData(
+              scaffoldBackgroundColor: AppConsts.kBkDark,
+              colorScheme: lightColorScheme ?? defaultLightColorsScheme,
+              useMaterial3: true,
             ),
-            useMaterial3: true,
-          ),
-          home: const HomePage(),
-        );
+            darkTheme: ThemeData(
+              colorScheme: darkColorScheme ?? defaultDarkColorScheme,
+              scaffoldBackgroundColor: AppConsts.kBkDark,
+              useMaterial3: true,
+            ),
+            themeMode: ThemeMode.dark,
+            home: const HomePage(),
+          );
+        });
       },
     );
   }
