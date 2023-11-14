@@ -9,6 +9,7 @@ import 'package:taskify/common/widgets/expansion_tile.dart';
 import 'package:taskify/common/widgets/height_spacer.dart';
 import 'package:taskify/common/widgets/reusable_text.dart';
 import 'package:taskify/features/todo/controllers/xpansion_provider.dart';
+import 'package:taskify/features/todo/pages/add.dart';
 import 'package:taskify/features/todo/widgets/todo_tile.dart';
 import '../../../common/widgets/width_spacer.dart';
 
@@ -33,7 +34,6 @@ class _HomePageState extends ConsumerState<HomePage>
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -70,7 +70,14 @@ class _HomePageState extends ConsumerState<HomePage>
                         ),
                       ),
                       child: GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const AddTask(),
+                            ),
+                          );
+                        },
                         child: const Icon(
                           Icons.add,
                           color: AppConsts.kBkDark,
@@ -260,10 +267,8 @@ class _HomePageState extends ConsumerState<HomePage>
                 trailing: Padding(
                   padding: EdgeInsets.only(right: 12.0.w),
                   child: ref.watch(xpansionStateProvider)
-                      ? const Icon(
-                          AntDesign.circledown,
-                          color: AppConsts.kLight
-                        )
+                      ? const Icon(AntDesign.circledown,
+                          color: AppConsts.kLight)
                       : const Icon(
                           AntDesign.closecircleo,
                           color: AppConsts.kBlueLight,
@@ -294,14 +299,12 @@ class _HomePageState extends ConsumerState<HomePage>
                 trailing: Padding(
                   padding: EdgeInsets.only(right: 12.0.w),
                   child: ref.watch(xpansionState0Provider)
-                      ? const Icon(
-                      AntDesign.circledown,
-                      color: AppConsts.kLight
-                  )
+                      ? const Icon(AntDesign.circledown,
+                          color: AppConsts.kLight)
                       : const Icon(
-                    AntDesign.closecircleo,
-                    color: AppConsts.kBlueLight,
-                  ),
+                          AntDesign.closecircleo,
+                          color: AppConsts.kBlueLight,
+                        ),
                 ),
                 children: [
                   TodoTile(
