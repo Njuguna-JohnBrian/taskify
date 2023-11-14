@@ -15,8 +15,8 @@ class DBHelper {
 
     await database.execute(
       "CREATE TABLE user("
-      "id, INTEGER PRIMARY KEY AUTOINCREMENT DEFAULT 0, "
-      "isVerified INTEGER)",
+      "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+      "isVerified INTEGER DEFAULT 0)",
     );
   }
 
